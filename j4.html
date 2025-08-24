@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="c.css">
+    <script src="j.js"></script>
+</head>
+
+<body>
+    <a href="index.html">
+        <img src="v.png" alt="Voltar">
+    </a>
+    <p id="p0"></p>
+    <p id="p1"></p>
+
+    <fieldset id="f0" class="f"></fieldset>
+    <div id="d0">
+        <p id="p2"></p>
+        <p id="p3"></p>
+        <p id="p4"></p>
+    </div>
+    <fieldset id="f1" class="f">
+        <button id="ca" class="b">Carregar</button>
+    </fieldset>
+    <p id="p5"></p>
+    <p id="p6"></p>
+
+    <script>
+        f = [],b=[]
+        let a,e, q, r,t,muda,m,l
+        sb=['<','=','>']
+
+        function ini() {
+            f[0] = ig('f0')
+            f[1] = ig('f1')
+
+            q = []
+            q[0] = 2
+            q[1]=9
+            q[2]=3
+            t=[]
+            t[0]=0
+            t[1]=20
+            t[2]=0
+            t[3]=60
+            t[4]=0
+            t[5]=5
+            m=0
+            l=1
+        }
+        ini()
+
+        function rei() {
+            c0(p0, null)
+            c0(p2, 'red')
+            c0(p3, 'red')
+            c1(p0, 'black')
+            c1(p2, 'white')
+            c1(p3, 'white')
+            it(p0, '< = >')
+            it(p2, 'Resposta')
+
+            n = []
+            r = []
+            r[0] = ''
+            r[1] = ''
+            r[2] = ''
+            r[3] = ''
+            r[4] = ''
+            r[5] = ''
+            r[6] = 0
+            r[7]=0
+            a=[]
+            e=[]
+            for(let i=0;i<q[0];i++){
+                a[i]=mt(q[1],1)
+                e[i]=mt(q[1],1)
+                if(i==0)r[0]+=a[i]+' + '
+                else r[0]+=a[i]
+
+                if(i==0)r[1]+=e[i]+' + '
+                else r[1]+=e[i]
+
+                r[2]=r[0]+' \u00A0\u00A0\u00A0\u00A0\u00A0 '+r[1]
+                r[3]=r[0]+' \u00A0 | \u00A0 '+r[1]
+            }
+            r[6]=a[0]+a[1]
+            r[7]=e[0]+e[1]
+            if(r[6]==r[7])r[4]='='
+            else if(r[6]<r[7])r[4]='<'
+            else r[4]='>'
+            it(p1,r[2])
+            it(p3,r[0]+' '+r[4]+' '+r[1])
+            muda=0
+
+            dpn(d0)
+            dpn(f[1])
+
+            it(p5,'Level \u00A0\u00A0\u00A0 '+l)
+            it(p6,'Tempo \u00A0\u00A0: '+t[4]+' \u00A0 / \u00A0 '+t[5])
+
+            c0(p6,null)
+            c1(p6,'black')
+        }
+        rei()
+
+        for(let i=0;i<q[2];i++){
+            b[i]=ie('button')
+            ii(b[i],'b'+i)
+            ic(b[i],'b')
+            it(b[i],sb[i])
+            ap(f[0],b[i])
+            b[i].onclick=()=>{
+                r[5]=sb[i]
+                r[3]=r[0]+' \u00A0 '+r[5]+' \u00A0 '+r[1]
+                it(p1,r[3])
+                m=1
+                if(r[4]==r[5])md0()
+                else md1()
+            }
+        }
+
+        function md0(){
+            c0(p0,'blue')
+            c1(p0,'white')
+            it(p0,'Acertou!')
+            q[1]+=2
+            l++
+            dpi(f[1])
+            t[0]=0
+            t[2]=0
+            t[4]=0
+        }
+        function md1(){
+            c0(p0,'red')
+            c1(p0,'white')
+            it(p0,'Errou!')
+            q[1]=9
+            l=1
+            dpi(f[1])
+            dpi(d0)
+            t[0]=0
+            t[2]=0
+            t[4]=0
+            c0(p6,'red')
+            c1(p6,'white')
+        }
+
+        ca.onclick=()=>{
+            m=0
+            rei()
+        }
+
+        function ctp(){
+            if(m==0){
+                t[0]++
+                if(t[0]>t[1]){
+                    if(muda==0){
+                        it(p1,r[3])
+                        t[0]=0
+                        muda=1
+                    }else{
+                        it(p1,r[2])
+                        t[0]=0
+                        muda=0
+                    }
+                }
+            }
+        }
+
+        function contagem(){
+            if(m==0){
+                t[2]++
+                if(t[2]>t[3]){
+                    t[4]++
+                    t[2]=0
+                    it(p6,'Tempo :'+t[4]+' \u00A0 / \u00A0 '+t[5])
+                }
+                if(t[4]>t[5]){
+                    m=1
+                    md1()
+                }
+            }
+
+        }
+
+        function at() {
+            ctp()
+            contagem()
+        }
+
+        function rd() {
+            at()
+            window.requestAnimationFrame(rd)
+        }
+        rd()
+    </script>
+</body>
+
+</html>

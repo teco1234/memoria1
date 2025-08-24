@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="c.css">
+        <script src="j.js"></script>
+    </head>
+    <body>
+        <a href="index.html">
+            <img src="v.png" alt="Voltar">
+        </a>
+        <p id="p0"></p>
+        <p id="p1"></p>
+        <fieldset id="f0"></fieldset>
+        <fieldset id="f1"></fieldset>
+        <div id="f2">
+            <p id="p2">Resposta</p>
+            <p id="p3"></p>
+            <p id="p4"></p>
+        </div>
+        
+        <fieldset id="f3" class="f">
+            <button id="bu" class="b">Carregar</button>
+        </fieldset>
+
+        <script>
+            f=[],a=[],b=[],c=[]
+            let q,n,ct,cc,ca,t,som,m,res
+
+            function ini(){
+                f[0]=ig('f0')
+                f[1]=ig('f1')
+                f[2]=ig('f2')
+                f[3]=ig('f3')
+                q=[]
+                q[0]=2
+
+                c0(f[2],'red')
+                c1(f[2],'white')
+
+                som=[]
+                for(let i=0;i<2;i++)som[i]=new Audio('a'+i+'.wav')
+            }ini()
+
+            function rei(){
+                c0(p0,null)
+                c1(p0,'black')
+                it(p0,'Memorize')
+
+                n=[]
+                for(let i=0;i<q[0];i++){
+                    n[i]=mt(crs.length,0)
+                }
+                ct=0
+                cc=[]
+                ca=0
+                
+                t=[]
+                t[0]=0
+                t[1]=150
+
+                dpb(f[0])
+                dpn(f[1])
+                dpn(f[2])
+                dpn(f[3])
+
+                m=0
+                res=0
+            }rei()
+
+            for(let i=0;i<crs.length;i++){
+                a[i]=ie('button')
+                ii(a[i],'a'+i)
+                cm(a[i],5)
+                cpx(a[i],50)
+                if(i<q[0])c0(a[i],crs[n[i]])
+                else dpn(a[i])
+                ap(f[0],a[i])
+            }
+            
+            for(let i=0;i<crs.length;i++){
+                b[i]=ie('button')
+                ii(b[i],'b'+i)
+                cm(b[i],5)
+                cpx(b[i],50)
+                c0(b[i],crs[i])
+                ap(f[1],b[i])
+                b[i].onclick=()=>{
+                    if(ct<q[0]){
+                        cc[ct]=crs[i]
+
+                        if(cc[ct]==crs[n[ct]]){
+                            ca++
+                            if(ca==q[0]){
+                                c0(p0,'blue')
+                                c1(p0,'white')
+                                it(p0,'Acertou!')
+                                dpb(f[3])
+                                dpn(f[1])
+                                res=1
+                            }else{
+                                ct++
+                                if(ct==q[0])ct=0
+                            }
+                            som[0].play()
+                        }else{
+                            som[1].play()
+                            res=2
+                            c0(p0,'red')
+                            c1(p0,'white')
+                            it(p0,'Errou!')
+                            dpb(f[2])
+                            dpb(f[3])
+                        }
+                    }
+                }
+            }
+
+            for(let i=0;i<crs.length;i++){
+                c[i]=ie('button')
+                ii(c[i],'c'+i)
+                cm(c[i],5)
+                cpx(c[i],50)
+                if(i<q[0])c0(c[i],crs[n[i]])
+                else dpn(c[i])
+                ap(f[2],c[i])
+            }
+
+            bu.onclick=()=>{
+                if(res==1){
+                    if(q[0]<12)q[0]++
+                }else{
+                    if(q[0]>2)q[0]--
+                } 
+                rei()
+                for(let i=0;i<crs.length;i++){
+                    if(i<q[0]){
+                        dpi(a[i])
+                        c0(a[i],crs[n[i]])
+                    }else dpn(a[i])
+                }
+                for(let i=0;i<crs.length;i++){
+                    if(i<q[0]){
+                        dpi(c[i])
+                        c0(c[i],crs[n[i]])
+                    }else dpn(c[i])
+                }
+            }
+            function m0(){
+                it(p0,'Clique')
+                dpn(f[0])
+                dpi(f[1])
+            }
+            function novo(){
+                q[0]++
+                rei()
+                for(let i=0;i<crs.length;i++){
+                    if(i<q[0]){
+                        dpi(a[i])
+                        c0(a[i],crs[n[i]])
+                    }else dpn(a[i])
+                }
+                for(let i=0;i<crs.length;i++){
+                    if(i<q[0]){
+                        dpi(c[i])
+                        c0(c[i],crs[n[i]])
+                    }else dpn(c[i])
+                }
+            }
+
+            function at(){
+                if(m==0){
+                    t[0]++
+                    if(t[0]>t[1]){
+                        m=1
+                        m0()
+                    }
+                }
+            }
+            function rd(){
+                at()
+                window.requestAnimationFrame(rd)
+            }
+            rd()
+        </script>
+    </body>
+</html>

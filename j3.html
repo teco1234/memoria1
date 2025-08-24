@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="c.css">
+        <script src="j.js"></script>
+    </head>
+    <body>
+        <a href="index.html">
+            <img src="v.png" alt="Voltar">
+        </a>
+        <p id="p0"></p>
+        <p id="p1"></p>
+        <fieldset id="f0" class="f"></fieldset>
+        <div id="d0">
+            <p id="p2">Resposta!</p>
+            <p id="p3"></p>
+            <p id="p4"></p>
+        </div>
+        <fieldset id="f1" class="f">
+            <button id="ca" class="b">Carregar</button>
+        </fieldset>
+
+        <script>
+            f=[],b=[]
+            let n,q,r,x,t,m
+            
+
+            function ini(){
+                f[0]=ig('f0')
+                f[1]=ig('f1')
+
+                q=[]
+                q[0]=2
+
+                m=0
+            }ini()
+
+            function rei(){
+                n=[]
+                x=[]
+                r=[]
+                r[0]=''
+                r[1]=''
+                for(let i=0;i<q[0];i++){
+                    n[i]=mt(lt.length,0)
+                    x[i]=lt[n[i]]
+                    r[0]+=x[i]
+                }
+
+                c0(p0,null)
+                c1(p0,'black')
+                it(p0,'Memorize!')
+                it(p1,r[0])
+
+                t=[]
+                t[0]=0
+                t[1]=150
+
+                dpn(f[0])
+                dpn(f[1])
+                dpn(d0)
+                c0(p2,'red')
+                c1(p2,'white')
+                c0(p3,'red')
+                c1(p3,'white')
+                it(p3,r[0])
+            }rei()
+
+            for(let i=0;i<lt.length+1;i++){
+                b[i]=ie('button')
+                ii(b[i],'b'+i)
+                ic(b[i],'b')
+                if(i<lt.length)it(b[i],lt[i])
+                else it(b[i],'Limpar')
+                ap(f[0],b[i])
+                b[i].onclick=()=>{
+                    if(r[0].length>r[1].length){
+                        if(i==lt.length){
+                            r[1]=''
+                            it(p1,'|')
+                        }else{
+                            r[1]+=lt[i]
+                            it(p1,r[1])
+                        }
+
+                        if(r[0].length==r[1].length){
+                            if(r[0]==r[1])md0()
+                            else md1()
+                        }
+                    }
+                }
+            }
+
+            function md0(){
+                c0(p0,'blue')
+                c1(p0,'white')
+                it(p0,'Acertou!')
+                dpn(f[0])
+                dpb(f[1])
+                if(q[0]<12)q[0]++
+            }
+            function md1(){
+                c0(p0,'red')
+                c1(p0,'white')
+                it(p0,'Errou!')
+                dpn(f[0])
+                dpb(f[1])
+                dpb(d0)
+                if(q[0]>2)q[0]--
+            }
+
+            ca.onclick=()=>{
+                m=0
+                rei()
+            }
+
+            function at(){
+                if(m==0){
+                    t[0]++
+                    if(t[0]>t[1]){
+                        m=1
+                        it(p0,'Digite!')
+                        it(p1,'|')
+                        dpb(f[0])
+                    }
+                }
+            }
+            function rd(){
+                at()
+                window.requestAnimationFrame(rd)
+            }
+            rd()
+        </script>
+    </body>
+</html>

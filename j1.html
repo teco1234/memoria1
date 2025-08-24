@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="c.css">
+        <script src="j.js"></script>
+    </head>
+    <body>
+        <a href="index.html">
+            <img src="v.png" alt="Voltar">
+        </a>
+
+        <p id="p0"></p>
+        <p id="p1"></p>
+        <fieldset id="f0" class="f"></fieldset>
+        <div id="d0">
+            <p id="p2"></p>
+            <p id="p3"></p>
+            <p id="p4"></p>
+        </div>
+        <fieldset id="f1" class="f">
+            <button id="ca" class="b">Carregar</button>
+        </fieldset>
+        <p id="p5"></p>
+
+        <script>
+            f=[],b=[]
+            let r,v,l
+
+            function ini(){
+                f[0]=ig('f0')
+                f[1]=ig('f1')
+
+                v=[]
+                v[0]=mt(9,2)
+                v[1]=mt(9,2)
+                l=1
+            }ini()
+
+            function rei(){
+                r=[]
+                r[0]=v[0]
+                r[1]=mt(v[1],2)
+                
+                r[2]=r[0]+' + '+r[1]+' = '
+                r[3]=r[0]+r[1]
+                r[4]=''
+
+                c0(p0,null)
+                c1(p0,'black')
+                it(p0,'Calcular')
+                it(p1,r[2])
+
+                c0(p2,'red')
+                c0(p3,'red')
+                c1(p2,'white')
+                c1(p3,'white')
+                it(p2,'Resposta!')
+                it(p3,r[2]+r[3])
+
+                it(p5,'Level \u00A0\u00A0\u00A0 :'+l)
+
+                dpn(d0)
+                dpn(f[1])
+            }rei()
+
+            for(let i=0;i<11;i++){
+                b[i]=ie('button')
+                ii(b[i],'b'+i)
+                ic(b[i],'b')
+                if(i==10)it(b[i],'L')
+                else it(b[i],i)
+                ap(f[0],b[i])
+                b[i].onclick=()=>{
+                    if(r[3].toString().length>r[4].length){
+                        if(i==10){
+                            r[4]=''
+                            it(p1,r[2])
+                        }else{
+                            r[4]+=i
+                            it(p1,r[2]+r[4])
+                        }
+
+                        if(r[3].toString().length==r[4].length){
+                            if(r[3]==r[4])md0()
+                            else md1()
+                        }
+                    }
+                }
+            }
+
+            function md0(){
+                c0(p0,'blue')
+                c1(p0,'white')
+                it(p0,'Acertou!')
+                if(v[0]<10000){
+                    v[0]=r[3]
+                    v[1]+=2
+                }
+                l++
+                dpb(f[1])
+            }
+            function md1(){
+                c0(p0,'red')
+                c1(p0,'white')
+                it(p0,'Errou!')
+                v[0]=mt(9,2)
+                v[1]=mt(9,2)
+                l=1
+                dpb(d0)
+                dpb(f[1])
+            }
+
+            ca.onclick=()=>{
+                rei()
+            }
+
+            function at(){
+
+            }
+            function rd(){
+                at()
+                window.requestAnimationFrame(rd)
+            }
+            // rd()
+        </script>
+    </body>
+</html>
