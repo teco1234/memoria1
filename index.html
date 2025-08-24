@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <link rel="stylesheet" href="c.css">
+        <script src="j.js"></script>
+    </head>
+    <body>
+        <p id="p0">Inicio</p>
+        <p id="p1"></p>
+        <fieldset id="f0" class="f"></fieldset>
+        <p id="p2"></p>
+        <p id="p3"></p>
+        <p id="p4"></p>
+        <!-- <fieldset id="f1" class="f"></fieldset> -->
+
+        <script>
+            f=[],b=[]
+            pg=['Somar','Calcular','Números','Letras','maiorMenor','Cores','Memória']
+
+            function ini(){
+                f[0]=ig('f0')
+                f[1]=ig('f1')
+            }ini()
+
+            function rei(){
+
+                for(let i=0;i<pg.length;i++){
+                    b[i]=ie('button')
+                    ii(b[i],'b'+i)
+                    ic(b[i],'b')
+                    it(b[i],pg[i])
+                    ap(f[0],b[i])
+                    b[i].onclick=()=>{
+                        location.href='j'+i+'.html'
+                    }
+                }
+            }rei()
+            
+
+            function at(){
+
+            }
+            function rd(){
+                at()
+                window.requestAnimationFrame(rd)
+            }
+            // rd()
+        </script>
+    </body>
+</html>

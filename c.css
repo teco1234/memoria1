@@ -1,0 +1,59 @@
+
+body{
+    font-size: 30px;
+    font-family: gill sans;
+    font-weight: bolder;
+    background-color: rgb(231, 244, 247);
+}
+p{
+    margin: -2px 0;
+    padding: 0 0 0 20px;
+}
+.b{
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    margin: 3px;
+    padding: 5px 10px;
+    font-size: 25px;
+    font-family: fantasy;
+    /* font-weight: bolder; */
+}
+.b:hover{background-color: rgb(204, 2, 2);}
+.b:active{background-color: rgb(244, 21, 21);}
+.f{
+    background-color: rgb(246, 246, 238);
+}
+a{
+    margin: 0 30px 0 0;
+    float: left;
+}
+img{float: left;}
+.ft{float: right;}
+
+.cores{
+    color: aqua;
+    color: aquamarine;
+    color: blueviolet;
+    color: cadetblue;
+    color: chartreuse;
+    color: coral;
+    color: darksalmon;
+    color: darkseagreen;
+    color: deeppink
+}
+.colori{
+    color: gainsboro;
+    color: lightcyan;
+    color: magenta;
+    color: mediumpurple;
+    color: orchid;
+    color:turquoise
+    /* color:tomato */
+}
+
+.t{
+    border-radius: 5px;
+    margin: 3px;
+}
